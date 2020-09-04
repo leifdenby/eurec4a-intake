@@ -38,6 +38,20 @@ sources:
     description: BCO meteo
     driver: zarr
 
+  bco_coral:
+    args:
+      consolidated: true
+      storage_options:
+        s3:
+          anon: true
+          client_kwargs:
+            endpoint_url: https://minio.denby.eu
+      urlpath: simplecache::s3://eurec4a-environment/bco/coral
+    description: CORAL LIDAR at BCO
+    driver: zarr
+
+
+
   halo:
     args:
       path: "{{CATALOG_DIR}}/halo/main.yaml"
