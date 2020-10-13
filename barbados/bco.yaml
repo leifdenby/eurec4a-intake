@@ -37,3 +37,33 @@ sources:
       tags:
         - water-vapour profiles
         - temperature profiles
+
+  CORAL_LIDAR_highres:
+    description: Observations made with the CORAL LIDAR at BCO (high-resolution)
+    driver: opendap
+    args:
+      urlpath: https://observations.ipsl.fr/thredds/dodsC/EUREC4A/BARBADOS/BCO/Raman_Lidar_CORAL/highResolution/version_{{version}}/nc/coral2020/coral{{t_start.strftime("%y%m")}}/coral{{t_start.strftime("%y%m%d")}}/coral_hr_{{t_start.strftime("%y%m%d")}}_{{t_start.strftime("%H%M")}}_{{offset_datetime(t_start, hours=1).strftime("%H%M")}}_{{content_type}}.nc
+      auth: null
+      chunks: {}
+    parameters:
+      version:
+        description: dataset version to use
+        type: str
+        default: 2020.08.12
+      t_start:
+        description: date of observation
+        default: 2020-01-09T16-00
+        type: datetime
+        min: 2020-01-08T00-00
+        max: 2020-02-29T23-00
+      content_type:
+        description: dataset-content
+        type: str
+        default: b
+        allowed: [b, t]
+    metadata:
+      maintainer: Leif Denby <l.c.denby[at]leeds.ac.uk>
+      documentation: https://wiki.mpimet.mpg.de/doku.php?id=analysis:data:bco:ramanlidars:raman-lidar-coral
+      tags:
+        - water-vapour profiles
+        - temperature profiles
